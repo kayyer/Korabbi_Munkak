@@ -9,4 +9,8 @@ Játszhat 2 ember egyszerre, 1 ember bot ellen vagy 2 bot egymás ellen. A ját�
 ![alt text](https://github.com/kayyer/seged/blob/main/progKepek/sakkMenet.png?raw=true "Tábla")
 
 2. Aszteroida játék
-3. 
+
+![alt text](https://github.com/kayyer/seged/blob/main/progKepek/aszteroidaKezdo.png?raw=true)
+![alt text](https://github.com/kayyer/seged/blob/main/progKepek/aszteroidaUjJatek.png?raw=true "Beállítások")
+![alt text](https://github.com/kayyer/seged/blob/main/progKepek/aszteroidaJatek.png?raw=true "Tábla")
+
