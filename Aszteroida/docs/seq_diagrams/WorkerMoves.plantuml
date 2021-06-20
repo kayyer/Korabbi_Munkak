@@ -1,0 +1,17 @@
+participant "w: Worker" as w
+participant "a: Asteroid" as a1
+participant "dest: Transporter" as dest
+
+
+[->w: move(dest)
+activate w
+        w->dest ++:acceptWorker(w)
+		dest-->w --: acceptSuccess
+        
+        opt acceptSuccess == true
+            w->a1 ++:removeWorker(w)
+		    a1-->w --
+		end
+        
+return
+

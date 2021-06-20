@@ -1,0 +1,35 @@
+participant "a : Asteroid" as a
+participant "ur : Uranium" as ur
+participant "w : Worker" as w
+participant "te: Teleport" as t
+participant "tr: Transporter" as tr
+participant ": Game" as g
+
+a->ur: exposed(a)
+activate ur
+ur->ur ++:getExposedCount
+return exposedCount
+alt exposedCount < 3
+ur->ur ++:setExposedCount(exposedCount + 1)
+return
+else else
+    ur->a: explode()
+    activate a
+        loop for w in workers
+            a->w:explode()
+            activate w
+            w-->a
+            deactivate w
+        end
+
+    
+    loop for tr in neighbors
+        a->tr ++:removeNeighbor(a)
+        return
+    end
+    a->g ++: removeSteppable(a)
+	return
+    a-->ur --
+end
+ur-->a !!
+destroy ur

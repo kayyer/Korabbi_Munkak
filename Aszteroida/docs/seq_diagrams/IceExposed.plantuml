@@ -1,0 +1,13 @@
+participant "a : Asteroid" as a
+participant "ic : Ice" as ic
+
+a->ic: exposed(a)
+activate ic
+
+    ic->a: removeMaterial()
+    activate a
+    a-->ic
+    deactivate a
+    
+ic-->a
+destroy ic

@@ -1,0 +1,9 @@
+participant "a: Asteroid" as a
+participant "t: Transporter" as t
+
+[->a++:addNeighbor(t)
+    alt already have t in neighbors
+        a-->[: false
+    else else
+        return true
+    end

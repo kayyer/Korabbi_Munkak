@@ -1,0 +1,70 @@
+participant "afp : AsteroidFieldPanel" as afp
+participant "a : Asteroid" as a
+participant " : ViewControlDatabase" as vcDatBase
+
+participant "buttonPool : List<JButton>" as buttonPool
+participant "b_i : JButton" as buttonPool
+
+participant "avc : AsteroidViewControl" as avc
+participant "cvc : MaterialViewControl" as cvc
+participant "avc_i : AsteroidViewControl" as avc_i
+
+participant "currentSettler : Settler" as currentSettler
+participant "currentAsteroid : Asteroid" as currentAsteroid
+participant "b_i : JButton" as b_i
+
+
+[->afp ++: update(a)
+    afp->currentSettler ++: getAsteroid()
+    return currentAsteroid
+    afp->currentAsteroid ++:getNeighbors()
+    return currentNeighbors
+    
+    loop for i: 0..currentNeighbors.size() + 1
+        afp->buttonPool ++:get(i)
+        return b_i
+        afp->b_i ++: setEnabled(false)
+        return
+    end
+
+    afp-> a++: getNeighbors
+    return neighbors
+    afp-> a++: getCore() 
+    return core
+    
+    opt neighbors.size() + 2 > buttonPool.size()
+        loop (neighbors.size() + 2 - buttonPool.size()) times
+            afp->buttonPool ++: add(new JButton())
+            return
+        end
+    end
+    
+    afp->vcDatBase ++: getAsteroidViewControl(a)
+    return avc
+    afp->avc ++: draw(buttonPool.get(0))
+    return
+    
+    alt core not null
+        afp->vcDatBase ++: getMaterialViewControl(core)
+        return cvc
+        afp->cvc ++: draw(buttonPool.get(1))
+        return
+    else else
+        afp->afp ++: make buttonPool.get(1) black and unclickable
+        return
+    end
+    
+    afp->afp ++: arrange neighbor buttons in a circle
+    return
+    
+    loop for i: 2..neighbors.size() + 1
+        afp->vcDatBase ++: getAsteroidViewControl(neighbors.get(i))
+        return avc_i
+        
+        afp-> avc_i ++: draw(buttonPool.get(i))
+        return
+    end
+    
+    
+    
+return

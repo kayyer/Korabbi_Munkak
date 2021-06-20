@@ -1,0 +1,11 @@
+participant "ufo: UnidentifiedFlyingObject" as ufo
+participant "a: Asteroid" as a
+participant ": Game" as game
+
+[->ufo ++: die()
+    ufo->a ++: removeWorker(r)
+    return
+    ufo->game ++: removeSteppable(ufo)
+    return
+return
+destroy ufo

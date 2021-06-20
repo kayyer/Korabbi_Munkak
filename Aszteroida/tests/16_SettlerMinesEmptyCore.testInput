@@ -1,0 +1,5 @@
+asteroidfield create
+asteroidfield af1 bind
+asteroid create 1 none 1 5
+settler create a1
+settler s1 mine

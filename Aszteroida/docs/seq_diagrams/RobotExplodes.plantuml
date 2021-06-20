@@ -1,0 +1,21 @@
+participant "a1: Asteroid" as a1
+participant "r: Robot" as r
+participant "t: Transporter" as t
+
+a1->r:explode()
+activate r
+    r->a1:getNeighbors()
+    activate a1
+    a1-->r: neighbors
+    deactivate a1
+    
+    alt neighbors is empty
+        r->r ++: die()
+        return
+    else else
+    
+    r->r ++:move(t)
+    return
+    end
+r-->a1
+deactivate r

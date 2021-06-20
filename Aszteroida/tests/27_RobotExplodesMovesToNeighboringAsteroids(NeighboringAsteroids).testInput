@@ -1,0 +1,7 @@
+asteroidfield create
+asteroidfield af1 bind
+asteroid create 1 none 0 25
+asteroid create 1 none 0 25
+asteroid a1 setNeighbors a2
+robot create a1
+robot r1 explode

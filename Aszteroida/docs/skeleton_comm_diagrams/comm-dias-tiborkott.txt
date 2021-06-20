@@ -1,0 +1,3 @@
+Settler hit by Sunstorm
+Settler lose
+Settler win

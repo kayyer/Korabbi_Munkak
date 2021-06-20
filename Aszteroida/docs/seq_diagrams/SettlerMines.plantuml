@@ -1,0 +1,29 @@
+participant "s: Settler" as s
+participant "inv: SettlerInventory" as inv
+participant "a: Asteroid" as a
+participant "core: Material" as core
+participant ": Game" as g
+
+
+
+[->s ++:mine()
+    s->a ++:mined(inv)
+        opt layer == layersDrilled && core is not null
+            a->inv ++: acceptMaterial(core)
+		        inv->inv ++: isFull()
+		        return storeSuccess
+            return storeSuccess
+            
+            opt storeSuccess == true
+                a->a ++: removeMaterial()
+                return
+				a->a ++: checkBaseWin()
+				return b
+				opt b
+				    a->g ++: endGame(true)
+				    return
+                end
+        end
+        end
+    return miningSucceededOrNot
+return

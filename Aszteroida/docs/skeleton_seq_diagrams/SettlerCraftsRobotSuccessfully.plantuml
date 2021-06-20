@@ -1,0 +1,67 @@
+actor "Player" as player
+participant "s : Settler" as s
+participant "rcp : RobotRecipe" as rcp
+participant "m : Material" as m
+participant "a : Asteroid" as a
+participant "robotResReg: RobotResourceRegistry" as resReg
+participant "r: Robot" as r
+
+
+participant "inv : Inventory" as inv
+
+participant ": Game" as game
+
+participant "iron : Iron" as iron
+participant "coal : Coal" as coal
+participant "uranium : Uranium" as uranium
+
+player->s ++: craft(rcp)
+
+s->rcp ++:craft(s)
+    
+    rcp->resReg **: <<create>> RobotResourceRegistry()
+    rcp->s ++: getInventory()
+    return inv
+    
+    rcp->resReg ++:register(inv)
+        resReg->uranium ++:giveSignature(robotResReg)
+            uranium->resReg ++: register(uranium)
+            return
+        return
+	resReg->coal ++:giveSignature(robotResReg)
+            coal->resReg ++: register(coal)
+            return
+        return
+ 	resReg->iron ++:giveSignature(robotResReg)
+            iron->resReg ++: register(iron)
+            return
+        return
+    return
+    rcp->resReg ++:isSuccessful()
+    return true
+    
+    rcp->resReg ++: removeRequiredMaterials(inv)
+    resReg ->inv ++:removeMaterial(iron)
+    return
+    resReg ->inv ++:removeMaterial(coal)
+    return
+    resReg ->inv ++:removeMaterial(uranium)
+    return
+    return
+    
+        rcp->r **:<<create>> Robot(a)
+        activate r
+           r->a ++:acceptWorker(r)
+                a->r ++:setAsteroid(a)
+                return
+                a->a ++:checkBaseWin()
+                return false
+           return true
+           r->game ++: addSteppable(r)
+           return
+        deactivate r
+        
+    
+return true
+
+return true

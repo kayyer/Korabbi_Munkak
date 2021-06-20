@@ -1,0 +1,7 @@
+asteroidfield create
+asteroidfield af1 bind
+asteroid create 5 none 0 2
+asteroid create 5 iron 2 4
+settler create a1
+settler create a2
+asteroid a1 explode

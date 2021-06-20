@@ -1,0 +1,7 @@
+asteroidfield create
+asteroidfield af1 bind
+asteroid create 5 none 4 0
+asteroid create 4 none 4 8
+asteroid a1 setNeighbor a2
+robot create a1
+robot r1 step
