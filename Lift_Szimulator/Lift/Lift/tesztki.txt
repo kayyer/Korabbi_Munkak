@@ -1,0 +1,31 @@
+|00 orakor : 8 utas volt|
+|01 orakor : 0 utas volt|
+|02 orakor : 0 utas volt|
+|03 orakor : 0 utas volt|
+|04 orakor : 0 utas volt|
+|05 orakor : 0 utas volt|
+|06 orakor : 0 utas volt|
+|07 orakor : 0 utas volt|
+|08 orakor : 0 utas volt|
+|09 orakor : 0 utas volt|
+|10 orakor : 0 utas volt|
+|11 orakor : 0 utas volt|
+|12 orakor : 0 utas volt|
+|13 orakor : 0 utas volt|
+|14 orakor : 0 utas volt|
+|15 orakor : 0 utas volt|
+|16 orakor : 0 utas volt|
+|17 orakor : 0 utas volt|
+|18 orakor : 0 utas volt|
+|19 orakor : 0 utas volt|
+|20 orakor : 0 utas volt|
+|21 orakor : 0 utas volt|
+|22 orakor : 0 utas volt|
+|23 orakor : 0 utas volt|
+
+
+Atlagosan 55.00 mp volt a varakozasi ido
+Osszesen 8 utas volt
+193 emelettel ment kevesebbet ,mintha mindenkit kulon szedett volna fel (0.15 .-e)
+A legtobbet 7 vart ez 125mp volt
+A legkevesebbet 3 vart ez 15mp volt

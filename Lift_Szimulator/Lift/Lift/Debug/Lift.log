@@ -1,0 +1,8 @@
+﻿  bekiolvas.c
+  celmod.c
+  main.c
+C:\Users\kayyer\OneDrive - Kormányzati Informatikai Fejlesztési Ügynökség\Desktop\NAGYHF\main.c(1,1): warning C4005: '_CRT_SECURE_NO_WARNINGS': macro redefinition
+C:\Users\kayyer\OneDrive - Kormányzati Informatikai Fejlesztési Ügynökség\Desktop\NAGYHF\main.c : message : see previous definition of '_CRT_SECURE_NO_WARNINGS'
+  utasmod.c
+  Generating Code...
+  Lift.vcxproj -> C:\Users\kayyer\OneDrive - Kormányzati Informatikai Fejlesztési Ügynökség\Desktop\NAGYHF\Lift\Debug\Lift.exe
