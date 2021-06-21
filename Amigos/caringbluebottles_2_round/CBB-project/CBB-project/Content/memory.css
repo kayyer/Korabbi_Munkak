@@ -1,0 +1,94 @@
+﻿body {
+}
+img.memoryImg {
+    float: left;
+    margin-right: 20px;
+    height: 303px;
+    width: 200px;
+    position: absolute;
+    transition: all 2s ease-in-out;
+    transform: scale(1);
+    z-index: 2;
+}
+img.show {
+    transform: scale(1.5);
+    z-index: 3000;
+}
+img.memoryImg00 {
+    top: 200px;
+    left: 381.5px;
+}
+img.memoryImg01 {
+    top: 200px;
+    left: 601.5px;
+}
+img.memoryImg02 {
+    top: 200px;
+    left: 821.5px;
+}
+img.memoryImg03 {
+    top: 200px;
+    left: 1041.5px;
+}
+img.memoryImg04 {
+    top: 200px;
+    left: 1261.5px;
+}
+img.memoryImg05 {
+    top: 503px;
+    left: 381.5px;
+}
+img.memoryImg06 {
+    top: 503px;
+    left: 601.5px;
+}
+img.memoryImg07 {
+    top: 503px;
+    left: 821.5px;
+}
+img.memoryImg08 {
+    top: 503px;
+    left: 1041.5px;
+}
+img.memoryImg09 {
+    top: 503px;
+    left: 1261.5px;
+}
+img.memoryImg:hover {
+    background-color: #B2C7A3;
+}
+img.memoryWatch:hover {
+    background-color: #B2C7A3;
+}
+span.results {
+    color: #993166;
+    font-weight: bold;
+    display: block;
+    width: 150px;
+    font-size: 20px;
+    font-style: inherit;
+    float: left;
+}
+img.gif {
+    height: 200px;
+    width: 200px;
+    position: fixed;
+    top: 700px;
+    left: 630px;
+}
+p.results {
+    color: #993166;
+    font-weight: bold;
+    font-size: 20px;
+    font-style:inherit;
+
+}
+img.defaultMemory {
+    height: 303px;
+    width: 200px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 20px;
+    margin-left: 0px;
+    background-color: #FFFFFF;
+}

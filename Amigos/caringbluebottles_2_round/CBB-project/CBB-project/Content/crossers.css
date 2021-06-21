@@ -1,0 +1,82 @@
+﻿/****4x4***/
+div.s-box {
+    width: 245px;
+    height: 245px;
+    margin: 0 auto;
+}
+
+/****6x6***/
+div.m-box {
+    width: 365px;
+    height: 365px;
+    margin: 0 auto;
+}
+
+/****8x8***/
+div.l-box {
+    width: 485px;
+    height: 485px;
+    margin: 0 auto;
+}
+
+div.unvisible {
+    background-color: transparent;
+    color: transparent;
+    border: none;
+}
+
+.empty {
+    width: 60px;
+    height: 60px;
+    background-color: #B2C7A3;
+    border: 1px solid #538723;
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+
+div.filled-good {
+    width: 60px;
+    height: 60px;
+    background: #8BBF58;
+    border: 1px solid #538723;
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+
+div.filled-bad {
+    width: 60px;
+    height: 60px;
+    background: #D62828;
+    border: 1px solid #538723;
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+
+div.filled-now {
+    width: 60px;
+    height: 60px;
+    background: #FFDE59;
+    border: 1px solid #538723;
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+
+.numbered {
+    counter-increment: value;
+}
+
+.numbered:nth-of-type(n)::before {
+    content: counter(value);
+    font-size: 10px;
+    position: absolute;
+}
+
+.myInput {
+    font-size:3em;
+    text-align: center;
+    margin: 0 0;
+}

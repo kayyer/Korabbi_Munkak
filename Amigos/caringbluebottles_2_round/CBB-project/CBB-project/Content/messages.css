@@ -1,0 +1,40 @@
+﻿body {
+}
+input[type=text], textarea {
+    background-color: #B2C7A3;
+    border-color: #5C9129;
+    font-size: 16px;
+    border: 1px solid #cdcdcd;
+    font: bold 12px arial;
+    width:200px;
+}
+
+input[type=text].subject {
+    margin-top: 20px;
+    height: 40px;
+}
+
+input[type=text].name {
+    margin-top: 20px;
+}
+
+input[type=text].newmessage, textarea {
+    margin-top: 40px;
+    height: 400px;
+    width: 400px;
+}
+#newtextTb {
+    height: 400px;
+    width: 400px;
+}
+input[type=text].subject_2 {
+    margin-left: 75px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+textarea.answer {
+    margin-top: 10px;
+    height: 20px;
+    width: 400px;
+}
