@@ -6,7 +6,6 @@ import java.util.*;
 public class Kiraly extends Babu{
 	public Kiraly(Mezo pos,String col) {
 		super(pos,col);
-		ertek = 10;
 		if(szin == "sotet")
 			icon = new ImageIcon("chess//png_24//games-battle-checkmate-chess-camel-bishop-figure-1-3956.png");
 		else
@@ -86,7 +85,7 @@ public class Kiraly extends Babu{
 	public void Tamadja(Babu b) {
 		koztuk = b.HogyJutszIde(hol_van);	
 		
-		if(hol_van.getSakkTabla().setSakk(szin))
+		hol_van.getSakkTabla().setSakk(szin);
 			
 		tamadjak.add(b);
 	}
@@ -113,6 +112,7 @@ public class Kiraly extends Babu{
 		for(Babu i : kit_gatol)
 		{
 			i.hova_lephet();
+					
 		}
 		kit_gatol.clear();
 		hol_van.getSakkTabla().leptek(hol_van);
@@ -141,6 +141,40 @@ public class Kiraly extends Babu{
 		hol_van.setIcon(icon);
 		hol_van.getSakkTabla().kiralyHOL(this);
 	}
+	public boolean tamadjaMezo(Mezo m) {
+		int egy = 1;
+		
+		for(int i = 0 ; i < 2 ; i++)
+		{
+			if(hol_van.getVer() + egy < 8  && hol_van.getVer() + egy >= 0 )
+			{	
+				if(m == hol_van.getSakkTabla().getMezo(hol_van.getVer() + egy,hol_van.getHor()))
+					return true;
+			}
+			if(hol_van.getHor() + egy < 8 &&  hol_van.getHor() + egy >= 0)
+			{
+				if(m == hol_van.getSakkTabla().getMezo(hol_van.getVer(),hol_van.getHor() + egy))
+					return true;
+			}
+			if(hol_van.getVer() + egy < 8 && hol_van.getHor() + egy < 8 && hol_van.getVer() + egy >= 0 && hol_van.getHor() + egy >= 0)
+			{
+				if(m ==hol_van.getSakkTabla().getMezo(hol_van.getVer() + egy,hol_van.getHor() + egy))
+					return true;
+			}
+			if(hol_van.getVer() - egy < 8 && hol_van.getHor() + egy < 8 && hol_van.getVer() - egy >= 0 && hol_van.getHor() + egy >= 0)
+			{
+				if(m == hol_van.getSakkTabla().getMezo(hol_van.getVer() - egy,hol_van.getHor() + egy))
+					return true;
+				
+			}
 	
+			egy *= -1;
+	
+		
+		}
+		return false;
+		
+		
+	}
 
 }

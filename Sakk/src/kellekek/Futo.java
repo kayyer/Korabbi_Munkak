@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 public class Futo extends Babu {
 	public Futo(Mezo pos,String col) {
 		super(pos,col);
-		ertek = 3;
 		if(szin == "sotet")
 			icon = new ImageIcon("chess//png_24//games-battle-chess-checkmate-figure-king-gambit-2-3965.png");
 		else
@@ -15,7 +14,6 @@ public class Futo extends Babu {
 
 	}
 	public void hova_lephet() {
-		System.out.println("FUTOT CSEKKOLJA");
 		lephet.clear();
 		boolean elore = true;
 		boolean hatra = true;
@@ -30,14 +28,11 @@ public class Futo extends Babu {
 			}
 			if(hol_van.getVer() - i >= 0 && hol_van.getHor() - i >= 0 && hatra)
 			{
-				System.out.println((hol_van.getVer() - i) + " " + (hol_van.getHor() - i) );
 				hatra  = lephetHelp(hol_van.getSakkTabla().getMezo(hol_van.getVer() - i, hol_van.getHor() - i ));
-				System.out.println(i+ " " + hatra);
 			}
 			if(i+hol_van.getHor() < 8 && hol_van.getVer() - i >= 0 &&  jobbra)
 			{
-				jobbra = lephetHelp(hol_van.getSakkTabla().getMezo(hol_van.getVer() - i, hol_van.getHor() + i));
-					
+				jobbra = lephetHelp(hol_van.getSakkTabla().getMezo(hol_van.getVer() - i, hol_van.getHor() + i));		
 			}
 			if(hol_van.getHor() - i >= 0 && hol_van.getVer() + i < 8 && balra)
 			{

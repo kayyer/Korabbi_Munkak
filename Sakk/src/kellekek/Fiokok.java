@@ -44,7 +44,7 @@ public class Fiokok implements Serializable{
 		mentes.close();
 
 	}
-public static void loadMeccs(Profil p) throws IOException,ClassNotFoundException{
+	public static void loadMeccs(Profil p) throws IOException,ClassNotFoundException{
 		
 	FileInputStream betoltes = new FileInputStream(fiokok.get(p));
 	ObjectInputStream in = new ObjectInputStream(betoltes);

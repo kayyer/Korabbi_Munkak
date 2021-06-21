@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 public class Vezer extends Babu {
 	public Vezer(Mezo pos, String col) {
 		super(pos, col);
-		ertek = 9;
 		if (szin == "sotet")
 			icon = new ImageIcon("chess//png_24//games-battle-checkmate-chess-figure-queen-wazir-3968.png");
 		else
@@ -33,12 +32,7 @@ public class Vezer extends Babu {
 			if (hol_van.getVer() - i >= 0 && hatra) {
 				
 				hatra = lephetHelp(hol_van.getSakkTabla().getMezo(hol_van.getVer() - i, hol_van.getHor()));
-				if(szin.equals("vilagos"))
-				{
-		if(!hatra)
-			System.out.println("GEG" + i );
-		System.out.println("GqG" + i + hatra);
-				}
+				
 			}
 			if (i + hol_van.getHor() < 8 && jobbra) {
 				jobbra = lephetHelp(hol_van.getSakkTabla().getMezo(hol_van.getVer(), hol_van.getHor() + i));

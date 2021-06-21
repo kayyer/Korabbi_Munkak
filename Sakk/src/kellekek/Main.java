@@ -8,7 +8,7 @@ public class Main {
 	{
 		Menu menu = new Menu();
 		menu.setVisible(true);
-        JFrame.setDefaultLookAndFeelDecorated(true);
+ 
 
 	}
 }

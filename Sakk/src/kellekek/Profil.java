@@ -8,7 +8,6 @@ public class Profil implements Serializable {
 	protected Vector<Babu> sotet;
 	private String soronlevo;
 	protected String oldal;
-	protected int hatra = -1;
 	public Profil(String n) {
 		nev = n;
 	}
@@ -46,14 +45,17 @@ public class Profil implements Serializable {
 	public void setOldal(String old) {
 		oldal = old;
 	}
-	public void activateBot() {
-		
+	public void fill(Vector<Babu> vilagos,Vector<Babu> sotet)
+	{
+		this.vilagos = vilagos;
+		this.sotet = sotet;
 	}
-	public void setHatra(int h) {
-		hatra = h;
-	}
-	public int getHatra() {
-		return hatra;
-	}
+	public void activateBot() {}
 	
+	public void ellenfel(Profil p) {
+		if(p.oldal.equals("vilagos"))
+			oldal = "sotet";
+		else
+			oldal = "vilagos";
+	}
 }

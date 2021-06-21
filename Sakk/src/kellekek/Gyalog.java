@@ -10,7 +10,6 @@ public class Gyalog extends Babu {
 
 	public Gyalog(Mezo pos, String col) {
 		super(pos, col);
-		ertek = 1;
 		if (szin == "sotet")
 			icon = new ImageIcon("chess//png_24//games-battle-checkmate-chess-figure-pawn-chessboard-1-3963.png");
 		else
@@ -29,12 +28,14 @@ public class Gyalog extends Babu {
 			kezdo = 6;
 			merre *= -1;
 		}
-		if ((getSzin().equals("vilagos") && hol_van.getVer() == 3) || (getSzin().equals("sotet") && hol_van.getVer() == 4)) {
+		if ((getSzin().equals("vilagos") && hol_van.getVer() == 3)
+				|| (getSzin().equals("sotet") && hol_van.getVer() == 4)) {
 			if (hol_van.getHor() + 1 < 8) {
 				Babu tmpM1 = hol_van.getSakkTabla().getMezo(hol_van.getVer(), hol_van.getHor() + 1).getRajta();
 				if (tmpM1 != null && !tmpM1.getSzin().equals(szin) && tmpM1.enPassantMehet()) {
 					enPassant = true;
-					lephet.add(hol_van.getSakkTabla().getMezo(tmpM1.getHolvan().getVer() - merre, tmpM1.getHolvan().getHor()));
+					lephet.add(hol_van.getSakkTabla().getMezo(tmpM1.getHolvan().getVer() - merre,
+							tmpM1.getHolvan().getHor()));
 
 				}
 			}
@@ -42,7 +43,8 @@ public class Gyalog extends Babu {
 				Babu tmpM2 = hol_van.getSakkTabla().getMezo(hol_van.getVer(), hol_van.getHor() - 1).getRajta();
 				if (tmpM2 != null && !tmpM2.getSzin().equals(szin) && tmpM2.enPassantMehet()) {
 					enPassant = true;
-					lephet.add(hol_van.getSakkTabla().getMezo(tmpM2.getHolvan().getVer() - merre, tmpM2.getHolvan().getHor()));
+					lephet.add(hol_van.getSakkTabla().getMezo(tmpM2.getHolvan().getVer() - merre,
+							tmpM2.getHolvan().getHor()));
 				}
 			}
 
@@ -51,8 +53,8 @@ public class Gyalog extends Babu {
 			masod = lephetHelp(hol_van.getSakkTabla().getMezo(hol_van.getVer() + merre, hol_van.getHor()));
 		}
 		Mezo dupla = hol_van.getSakkTabla().getMezo(kezdo + merre * 2, hol_van.getHor());
-		if((hol_van.getSakkTabla().getSakk().equals(szin) && dupla.getRajta() == null && koztuk.contains(dupla)))
-				masod = true;
+		if ((hol_van.getSakkTabla().getSakk().equals(szin) && dupla.getRajta() == null && koztuk.contains(dupla)))
+			masod = true;
 		if (masod && hol_van.getVer() == kezdo) {
 			Mezo tmp = hol_van.getSakkTabla().getMezo(kezdo + merre * 2, hol_van.getHor());
 			if (tmp.getRajta() == null)
@@ -63,9 +65,12 @@ public class Gyalog extends Babu {
 	}
 
 	public boolean lephetHelp(Mezo tmp) {
+		Mezo tmp1;
+		Mezo tmp2;
 		Vector<Mezo> kiralytVedve = tamadtokHaEnNemLeszek(kiralyomHelye);
 		boolean lephete = false;
-		if ((!hol_van.getSakkTabla().getSakk().equals(szin) || koztuk.contains(tmp)) && (kiralytVedve == null || kiralytVedve.contains(tmp))) {
+		if ((!hol_van.getSakkTabla().getSakk().equals(szin) || koztuk.contains(tmp))
+				&& (kiralytVedve == null || kiralytVedve.contains(tmp))) {
 			if (tmp.getRajta() == null) {
 				lephet.add(tmp);
 				lephete = true;
@@ -75,8 +80,9 @@ public class Gyalog extends Babu {
 
 		}
 		if (tmp.getHor() - 1 >= 0) {
-			Mezo tmp1 = hol_van.getSakkTabla().getMezo(tmp.getVer(), tmp.getHor() - 1);
-			if ((!hol_van.getSakkTabla().getSakk().equals(szin) || koztuk.contains(tmp1)) && (kiralytVedve == null || kiralytVedve.contains(tmp1))) {
+			tmp1 = hol_van.getSakkTabla().getMezo(tmp.getVer(), tmp.getHor() - 1);
+			if ((!hol_van.getSakkTabla().getSakk().equals(szin) || koztuk.contains(tmp1))
+					&& (kiralytVedve == null || kiralytVedve.contains(tmp1))) {
 				uthet.add(tmp1);
 				if (tmp1.getRajta() != null)
 					tamadHelp(tmp1);
@@ -84,14 +90,17 @@ public class Gyalog extends Babu {
 		}
 
 		if (tmp.getHor() + 1 < 8) {
-			Mezo tmp2 = hol_van.getSakkTabla().getMezo(tmp.getVer(), tmp.getHor() + 1);
-			if ((!hol_van.getSakkTabla().getSakk().equals(szin) || koztuk.contains(tmp2)) && (kiralytVedve == null || kiralytVedve.contains(tmp2))) {
+			tmp2 = hol_van.getSakkTabla().getMezo(tmp.getVer(), tmp.getHor() + 1);
+			if ((!hol_van.getSakkTabla().getSakk().equals(szin) || koztuk.contains(tmp2))
+					&& (kiralytVedve == null || kiralytVedve.contains(tmp2))) {
 				uthet.add(tmp2);
 				if (tmp2.getRajta() != null)
 					tamadHelp(tmp2);
 			}
 		}
-
+		if (kiralytVedve != null) {
+			kiralyomHelye.getRajta().gatolsz(this);
+		}
 		return lephete;
 	}
 
@@ -100,9 +109,11 @@ public class Gyalog extends Babu {
 		int merre = 1;
 		if (szin.equals("vilagos"))
 			merre = -1;
-		if (lephet.contains(m) || (hol_van.getHor() - 1 >= 0 && hol_van.getSakkTabla().getMezo(hol_van.getVer() + merre, hol_van.getHor() - 1) == m)
-				|| (hol_van.getHor() + 1 < 8 && hol_van.getSakkTabla().getMezo(hol_van.getVer() + merre, hol_van.getHor() + 1) == m))
-		{
+		if (lephet.contains(m)
+				|| (hol_van.getHor() - 1 >= 0
+						&& hol_van.getSakkTabla().getMezo(hol_van.getVer() + merre, hol_van.getHor() - 1) == m)
+				|| (hol_van.getHor() + 1 < 8
+						&& hol_van.getSakkTabla().getMezo(hol_van.getVer() + merre, hol_van.getHor() + 1) == m)) {
 			hova_lephet();
 		}
 	}
@@ -114,8 +125,7 @@ public class Gyalog extends Babu {
 	}
 
 	public Vector<Mezo> HogyJutszIde(Mezo b) {
-		if(tamad.contains(b.getRajta()))
-		{
+		if (tamad.contains(b.getRajta())) {
 			Vector<Mezo> tmp = new Vector<>();
 			tmp.add(hol_van);
 			return tmp;
@@ -138,10 +148,12 @@ public class Gyalog extends Babu {
 		hol_van.getSakkTabla().nincsEnPassant(szin);
 		if (Math.abs(hova.getVer() - hol_van.getVer()) == 2) {
 			enPassantKaphat = true;
-			if (hova.getHor() + 1 < 8 && hol_van.getSakkTabla().getMezo(hova.getVer(), hova.getHor() + 1).getRajta() != null) {
+			if (hova.getHor() + 1 < 8
+					&& hol_van.getSakkTabla().getMezo(hova.getVer(), hova.getHor() + 1).getRajta() != null) {
 				hol_van.getSakkTabla().getMezo(hova.getVer(), hova.getHor() + 1).getRajta().hova_lephet();
 			}
-			if (hova.getHor() - 1 >= 0 && hol_van.getSakkTabla().getMezo(hova.getVer(), hova.getHor() - 1).getRajta() != null) {
+			if (hova.getHor() - 1 >= 0
+					&& hol_van.getSakkTabla().getMezo(hova.getVer(), hova.getHor() - 1).getRajta() != null) {
 				hol_van.getSakkTabla().getMezo(hova.getVer(), hova.getHor() - 1).getRajta().hova_lephet();
 			}
 		}
@@ -156,20 +168,17 @@ public class Gyalog extends Babu {
 		tamadjak.clear();
 		Vector<Babu> kit_gatolTMP = new Vector<Babu>();
 		kit_gatolTMP.addAll(kit_gatol);
-		
+
 		kit_gatol.clear();
-		
+
 		for (Babu i : kit_gatolTMP) {
-			System.out.println(i + " gatol");
-			System.out.println(hol_van.getSakkTabla().getMezo(6, 3).getRajta() == null);
 			i.hova_lephet();
 		}
 		if ((szin.equals("vilagos") && hol_van.getVer() == 0) || (szin.contentEquals("sotet") && hol_van.getVer() == 7))
 			hol_van.getSakkTabla().Promotion(this);
 		else {
 			hova_lephet();
-			for(Babu i : tamad)
-			{
+			for (Babu i : tamad) {
 				i.hova_lephet();
 			}
 			hol_van.getSakkTabla().leptek(hol_van);
@@ -178,14 +187,12 @@ public class Gyalog extends Babu {
 		megNemLepett = false;
 
 	}
+
 	public void gatolsz(Babu engem) {
-		if(!kit_gatol.contains(engem))
-		{
+		if (!kit_gatol.contains(engem)) {
 			kit_gatol.add(engem);
 		}
-		
-		
-		
+
 	}
 
 }

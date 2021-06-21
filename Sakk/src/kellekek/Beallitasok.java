@@ -3,7 +3,6 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
-import java.io.*;
 public class Beallitasok extends JFrame{
 	private JComboBox<Object> Fiok1;
 	private JComboBox<Object> Fiok2;
@@ -12,16 +11,13 @@ public class Beallitasok extends JFrame{
 	private Fiokok felh = new Fiokok();
 	private JPanel profile1 = new JPanel();
 	private JPanel profile2 = new JPanel();
-	private JPanel time = new JPanel(new GridLayout(1,4));
-	private  CheckboxGroup cbg = new CheckboxGroup();
 	private JToggleButton kezdoMod = new JToggleButton(new ImageIcon("chess//off.png"));
 	private JPanel kezdo = new JPanel(new GridLayout(1,1));
 	private JPanel be2 = new JPanel(new GridLayout(1,2));
 	private JButton mentes = new JButton(new ImageIcon(new ImageIcon("chess//mentesgomb.png").getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH)));
 	private JButton vissza = new JButton(new ImageIcon(new ImageIcon("chess//visszagomb.png").getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH)));
-	private JPanel opciok = new JPanel(new GridLayout(3,1));
+	private JPanel opciok = new JPanel(new GridLayout(2,1));
 	private static boolean gyakorloMod = false;
-	private static int sakkOra = -1;
 	private static Profil player1 = new Profil("Jatekos");
 	private static Profil player2 = new Profil("Jatekos");
 	private HashMap<String,Profil> nevek = new HashMap<>();
@@ -31,7 +27,7 @@ public class Beallitasok extends JFrame{
 		try {
 		felh.load();
 		}catch(Exception e) {
-			System.out.println("Hiba");
+			System.out.println("Felhasznalok betoltese sikertelen");
 		}
 		ArrayList<String> felhasznalok = new ArrayList<>();
 		felhasznalok.add("Jatekos");
@@ -55,11 +51,7 @@ public class Beallitasok extends JFrame{
 		profiles.add(new_player,BorderLayout.SOUTH);
 		profiles.setBorder(BorderFactory.createTitledBorder("JÁTÉKOS BEÁLLÍTÁSOK"));
 		
-		time.add(new Checkbox("Nincs",cbg,true));
-		time.add(new Checkbox("05:00",cbg,false));
-		time.add(new Checkbox("10:00",cbg,false));
-		time.add(new Checkbox("15:00",cbg,false));
-		time.setBorder(BorderFactory.createTitledBorder("IDÕ LIMIT"));
+	
 		
 		kezdo.setBorder(BorderFactory.createTitledBorder("GYAKORLÓ MÓD KI/BE"));
 		kezdoMod.setBorderPainted(false);
@@ -68,7 +60,6 @@ public class Beallitasok extends JFrame{
 		
 
 		opciok.add(profiles);
-		opciok.add(time);
 		opciok.add(kezdo);
 		
 		vissza.setPreferredSize(new Dimension(30,30));
@@ -96,7 +87,7 @@ public class Beallitasok extends JFrame{
 
 		setTitle("Beállítások");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(220,430);
+		setSize(250,370);
 		setLocationRelativeTo(null);
 		
 	
@@ -131,7 +122,7 @@ public class Beallitasok extends JFrame{
 					nevek.put(s,ujP);
 					felh.save();
 					}catch(Exception e) {
-						System.out.println("Hiba2");
+						System.out.println("Uj felhasznalo hozzaadasa nem sikerult");
 					}
 					}
 				}
@@ -170,26 +161,6 @@ public class Beallitasok extends JFrame{
 				else
 					player2 = nevek.get((String)Fiok2.getSelectedItem());
 				
-				switch(cbg.getSelectedCheckbox().getLabel()){
-				case "Nincs" :
-						player1.setHatra(-1);
-						player2.setHatra(-1);
-						break;
-				case "05:00" :
-						player1.setHatra(5*3);
-						player2.setHatra(5*3);
-						break;
-				case "10:00" : 
-						player1.setHatra(10*60);
-						player2.setHatra(10*60);
-						break;
-				case "15:00" :
-						player1.setHatra(15*60);
-						player2.setHatra(15*60);
-			}
-			
-				
-
 				
 				
 			}

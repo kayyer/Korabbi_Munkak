@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+
 public class Mezo extends JButton implements ActionListener {
 	private int hor;
 	private int ver;
@@ -13,8 +14,6 @@ public class Mezo extends JButton implements ActionListener {
 	private static String soronLevo = "vilagos";
 	private static Mezo tmpLepo;
 	private Tabla sakkTabla;
-	
-	
 
 	public Mezo(int v, int h, Tabla t) {
 		super();
@@ -24,21 +23,26 @@ public class Mezo extends JButton implements ActionListener {
 		this.setActionCommand("clicked");
 		this.addActionListener(this);
 	}
+
 	public static void setBack() {
 		lepne = false;
 		soronLevo = "vilagos";
 		tmpLepo = null;
-		
+
 	}
+
 	public Tabla getSakkTabla() {
 		return sakkTabla;
 	}
+
 	public Babu getRajta() {
 		return rajta;
 	}
+
 	public static String getSoronLevo() {
 		return soronLevo;
 	}
+
 	public static void setSoronLevo(String s) {
 		soronLevo = s;
 	}
@@ -62,15 +66,19 @@ public class Mezo extends JButton implements ActionListener {
 	public void setRajta(Babu b) {
 		rajta = b;
 	}
+
 	public static void setTmpLepo(Mezo m) {
 		tmpLepo = m;
 	}
-	public static void setLepne(boolean b)
-	{
+
+	public static void setLepne(boolean b) {
 		lepne = b;
 	}
+
 	public void actionPerformed(ActionEvent ae) {
 		if ( ae.getActionCommand().contentEquals("clicked") ) {
+			if(sakkTabla.getBotMod())
+				return;
 			if (lepne == false && rajta != null && rajta.getSzin().equals(soronLevo) && rajta.lephet.size() != 0)
 			{	
 				setBorder(BorderFactory.createLineBorder(Color.green));
@@ -87,16 +95,12 @@ public class Mezo extends JButton implements ActionListener {
 			}
 			else if (lepne == true && this != tmpLepo && tmpLepo.rajta.lephet.contains(this) )
 			{
-				System.out.println(tmpLepo.rajta.getKiralyomHelye().getVer() + " " + tmpLepo.rajta.getKiralyomHelye().getHor() + "FD00");
 				if (rajta != null)
 				{
 					sakkTabla.leutottek(rajta);
 				}
 				rajta = tmpLepo.getRajta();
-				if(!sakkTabla.getSakk().equals(""))
-				{
-					sakkTabla.setSakk("");
-				}
+			
 				if(Beallitasok.getGyakorloMod())
 				{
 					if(sakkTabla.getSekk())
@@ -108,6 +112,12 @@ public class Mezo extends JButton implements ActionListener {
 				}
 		
 				rajta.lep(this);
+				
+				if(!sakkTabla.getSakk().equals(""))
+				{
+					sakkTabla.setSakk("");
+				}
+				
 				lepne = false;
 				if (soronLevo.equals("vilagos"))
 				{	
@@ -147,8 +157,8 @@ public class Mezo extends JButton implements ActionListener {
 				sakkTabla.getFiok2().activateBot();
 			}
 
+		
 		}
-
 	}
-	
+
 }

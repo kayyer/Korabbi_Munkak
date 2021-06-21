@@ -2,10 +2,10 @@ package kellekek;
 import javax.swing.*;
 import java.util.*;
 import java.io.*;
+
 abstract class Babu implements Serializable {
 	protected Mezo hol_van;
 	protected Vector<Mezo> lephet = new Vector<>();
-	protected int ertek;
 	protected String szin;
 	protected Vector<Babu> tamadjak = new Vector<>();
 	protected Vector<Babu> tamad = new Vector<>();
@@ -16,6 +16,12 @@ abstract class Babu implements Serializable {
 	protected boolean enPassantKaphat = false;
 	protected boolean megNemLepett = true; 
 	protected Mezo kiralyomHelye;
+	
+	
+	public Babu(Mezo pos,String col) {
+		szin = col;
+		hol_van = pos;
+	}
 	
 	
 	public void lep(Mezo hova) {
@@ -29,9 +35,7 @@ abstract class Babu implements Serializable {
 		hol_van.setRajta(null);
 		hol_van.setIcon(null);
 		hol_van = hova;
-		felrak();
-		if(hol_van.getVer() == 1 && hol_van.getHor() == 3)
-			System.out.println("TESZT1.0 : " + hol_van.getRajta());
+		hol_van.setIcon(icon);
 		for(Babu i : tamad) {
 			i.TamadoEl(this);
 		}
@@ -39,9 +43,7 @@ abstract class Babu implements Serializable {
 		tamadjak.clear();
 		Vector<Babu> kit_gatolTMP = new Vector<Babu>(); 
 		kit_gatolTMP.addAll(kit_gatol);
-		
-		kit_gatol.clear();
-		
+		kit_gatol.clear();	
 		for (Babu i : kit_gatolTMP) {
 			i.hova_lephet();
 		}
@@ -63,10 +65,7 @@ abstract class Babu implements Serializable {
 	public String getSzin() {
 		return szin;
 	}
-	public Babu(Mezo pos,String col) {
-		szin = col;
-		hol_van = pos;
-	}
+	
 	public Icon getIcon() {
 		return icon;
 	}
@@ -90,13 +89,12 @@ abstract class Babu implements Serializable {
 		Vector<Mezo> kiralytVedve = tamadtokHaEnNemLeszek(kiralyomHelye);		
 		if(kiralytVedve != null && !kiralytVedve.contains(tmp))
 		{
+			kiralyomHelye.getRajta().gatolsz(this);
 			return false;
 		}
 		if(tmp.getRajta() == null)
 		{
 			lephet.add(tmp);
-			if(hol_van.getVer() == 3 && hol_van.getHor() == 1)
-				System.out.println("IDELEPNE Mert NULLA " + tmp.getVer() + " " + tmp.getHor() );
 			return true;
 		}
 		
@@ -125,8 +123,6 @@ abstract class Babu implements Serializable {
 	public void valakiElment(Mezo m) {
 		if(lephet.contains(m))
 		{
-			if(hol_van.getVer() == 3 && hol_van.getHor() == 1)
-				System.out.println("TesztV2");
 			hova_lephet();
 		}
 	}
@@ -140,9 +136,7 @@ abstract class Babu implements Serializable {
 	public Mezo getHolvan() {
 		return hol_van;
 	}
-	public int getErtek() {
-		return ertek;
-	}
+	
 	public boolean enPassantMehet() {
 		return enPassantKaphat;
 	}
@@ -183,7 +177,7 @@ abstract class Babu implements Serializable {
 	public void setHolvan(Mezo hova) {
 		hol_van = hova;
 	}
-	public void setBackKoztuk() {
+	public static void setBackKoztuk() {
 		koztuk.clear();
 	}
 }

@@ -7,7 +7,6 @@ import java.util.*;
 public class Bastya extends Babu {
 	public Bastya(Mezo pos,String col) {
 		super(pos,col);
-		ertek = 5;
 		if(col == "sotet")
 			icon = new ImageIcon("chess//png_24//games-battle-checkmate-chess-figure-move-rook-2-3973.png");
 		else

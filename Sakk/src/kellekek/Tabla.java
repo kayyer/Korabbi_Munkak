@@ -19,29 +19,23 @@ public class Tabla extends JFrame {
 	private  boolean sekk = false;
 	private  Profil fiok1;
 	private  Profil fiok2;
-	private boolean Vege = false;
 	private Timer botLepteto;
-	private Timer sakkOra;
 	private boolean botMod = false;
 	
 	
 	
 	private JPanel tabla = new JPanel(new GridLayout(8,8));
 	private JPanel infoSor = new JPanel();
-	private JPanel jatekos1 = new JPanel();
-	private JPanel jatekos2 = new JPanel();
-	private  JTextField kiiro = new JTextField(6);
-	private JPanel kozep = new JPanel();
+	private  JTextField kiiro = new JTextField(9);
+	private JPanel kozep = new JPanel(new GridLayout(1,3));
 	private JTextField jatekos1Nev = new JTextField();
 	private JTextField jatekos2Nev = new JTextField();
-	private JTextField jatekos1Ido = new JTextField("00:00");
-	private JTextField jatekos2Ido = new JTextField("00:00");
 	private JPanel oldalsoSzamok = new JPanel(new GridLayout(8,1));
 	private JPanel alsoBetuk = new JPanel(new GridLayout(1,8));
 	private JTextField[] szamok = new JTextField[8];
 	private JTextField[] betuk = new JTextField[8];
 	private JButton vissza = new JButton(new ImageIcon("chess//visszagomb.png"));
-	private JButton mentes = new JButton(new ImageIcon("chess//mentesgomb.png"));
+	
 	
 	public void initComponents() {
 		fiok1 = Beallitasok.getPlayer1();
@@ -97,37 +91,28 @@ public class Tabla extends JFrame {
 		add(oldalsoSzamok,BorderLayout.WEST);
 		add(alsoBetuk,BorderLayout.SOUTH);
 		vissza.setPreferredSize(new Dimension(24,24));
-		mentes.setPreferredSize(new Dimension(24,24));
+		
 		
 		vissza.setBorderPainted(false);
 		vissza.setContentAreaFilled(false);
 		vissza.setActionCommand("clicked");
 		vissza_AL val = new vissza_AL();
 		vissza.addActionListener(val);
-		mentes.setBorderPainted(false);
-		mentes.setContentAreaFilled(false);
-		mentes.setActionCommand("clicked");
-		mentes_AL mal = new mentes_AL();
-		mentes.addActionListener(mal);
+		
 		
 		kiiro.setEditable(false);
 		jatekos1Nev.setEditable(false);
 		jatekos2Nev.setEditable(false);
-		jatekos1Ido.setEditable(false);
-		jatekos2Ido.setEditable(false);
 		
 		kiiro.setHorizontalAlignment(JTextField.CENTER);
+		jatekos1Nev.setHorizontalAlignment(JTextField.CENTER);
+		jatekos2Nev.setHorizontalAlignment(JTextField.CENTER);
 		
-		kozep.add(vissza,BorderLayout.EAST);
+		kozep.add(jatekos1Nev,BorderLayout.LINE_START);
 		kozep.add(kiiro,BorderLayout.CENTER);
-		kozep.add(mentes,BorderLayout.WEST);
-		jatekos1.add(jatekos1Nev,BorderLayout.NORTH);
-		jatekos1.add(jatekos1Ido,BorderLayout.SOUTH);
-		jatekos2.add(jatekos2Nev,BorderLayout.NORTH);
-		jatekos2.add(jatekos2Ido,BorderLayout.SOUTH);
-		infoSor.add(jatekos1,BorderLayout.EAST);
+		kozep.add(jatekos2Nev,BorderLayout.EAST);
+		infoSor.add(vissza,BorderLayout.EAST);
 		infoSor.add(kozep,BorderLayout.CENTER);
-		infoSor.add(jatekos2,BorderLayout.WEST);
 		add(infoSor,BorderLayout.PAGE_START);
 	
 		
@@ -141,16 +126,8 @@ public class Tabla extends JFrame {
 		setResizable(false);
 		setLocationRelativeTo(null);
 
-		 GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		 GraphicsDevice gd = ge.getDefaultScreenDevice();
-		 if (gd.isWindowTranslucencySupported(TRANSLUCENT)) 
-		    setOpacity(0.80f);
+		
 		initComponents();
-		babukFelrakasa();
-		if(fiok1.getNev().equals("Bot"))
-			fiok1.fill(vilagos, sotet, "vilagos");
-		if(fiok2.getNev().equals("Bot"))
-			fiok2.fill(vilagos, sotet, "vilagos");
 		addWindowListener(new mentesZaraskor());
 	}
 	public class mentesZaraskor extends WindowAdapter{
@@ -176,13 +153,21 @@ public class Tabla extends JFrame {
 		{
 			i.hova_lephet();
 		}
-		if(fiok1.getHatra() != -1)
-		{
-		sakkOra = new Timer(2000,new sakkOra_AL());
-		System.out.println("SCS");
-		sakkOra.start();
-		}
+		if(fiok1.getNev().equals("Bot"))
+			fiok1.fill(vilagos, sotet, "vilagos");
+		if(fiok2.getNev().equals("Bot"))
+			fiok2.fill(vilagos, sotet, "vilagos");
+		
 	}
+	public Vector<Babu> getVilagos(){
+		return vilagos;
+	}
+	public Vector<Babu> getSotet(){
+		return sotet;
+	}
+
+	
+	
 	public void regiJatekBetoltese() {
 		Profil betolt = new Profil("");
 		if((!fiok1.getNev().equals("Bot") && !fiok1.getNev().equals("Jatekos") && fiok1.getVilagos() != null) && (!fiok2.getNev().equals("Bot") && !fiok2.getNev().equals("Jatekos")&& fiok1.getVilagos() != null))
@@ -190,17 +175,23 @@ public class Tabla extends JFrame {
 			String opt[] = new String[] {fiok1.getNev(),fiok2.getNev()};
 			int valasz = JOptionPane.showOptionDialog(null,"Melyik felhasználó mentését használjam?","Mentés",JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, opt, opt[0]);
 			switch(valasz) {
-			case 0 : betolt = fiok1; break;
-			case 1 : betolt = fiok2; break;
+			case 0 : betolt = fiok1; 
+					 fiok2.ellenfel(fiok1);
+					 break;
+			case 1 : betolt = fiok2;
+					 fiok1.ellenfel(fiok2);
+					 break;
 			}
 	
 		}
 		else if(!fiok1.getNev().equals("Bot") && !fiok1.getNev().equals("Jatekos")&& fiok1.getVilagos() != null)
 		{
 			betolt = fiok1;
+			fiok2.ellenfel(fiok1);
 		}
 		else {
 			betolt = fiok2;
+			fiok1.ellenfel(fiok2);
 		}
 		vilagos = betolt.getVilagos();
 		sotet = betolt.getSotet();
@@ -271,10 +262,9 @@ public class Tabla extends JFrame {
 		b.getHolvan().setRajta(null);
 		for(Babu tmp : b.get_kit_gatol())
 		{
-			System.out.println(tmp);
 			tmp.hova_lephet();
 		}
-		if(b.szin == "feher")
+		if(b.szin == "vilagos")
 			vilagos.remove(b);
 		else
 			sotet.remove(b);
@@ -309,13 +299,10 @@ public class Tabla extends JFrame {
 		return Sakk;
 	}
 	
-	public  boolean setSakk(String szin) {
+	public  void setSakk(String szin) {
 		Sakk = szin;
-		System.out.println("sakk + " + Sakk);
-		boolean vege = true;
 		if(Sakk.equals(""))
 		{
-			vege = false;
 			kiiro.setText("");
 
 		}
@@ -327,8 +314,6 @@ public class Tabla extends JFrame {
 			for(Babu i : vilagos)
 			{
 				i.hova_lephet();
-				if(i.lephet.size() > 0)
-					vege = false;
 			}
 		}
 		if(szin.equals("sotet") || szin.equals(""))
@@ -336,11 +321,9 @@ public class Tabla extends JFrame {
 			for(Babu i : sotet)
 			{
 				i.hova_lephet();
-				if(i.lephet.size() > 0)
-					vege = false;
+				
 			}
 		}
-		return vege;
 
 	}
 	
@@ -513,7 +496,7 @@ public class Tabla extends JFrame {
 			try {
 			Fiokok.saveMeccs(fiok1);
 			}catch(Exception e) {
-				System.out.println("Hiba6");
+				System.out.println("Meccs elmentese sikertelen");
 			}
 		}
 	
@@ -523,43 +506,26 @@ public class Tabla extends JFrame {
 			try {
 			Fiokok.saveMeccs(fiok2);
 			}catch(Exception e) {
-				System.out.println("Hiba7");
+				System.out.println("Meccs elmentese sikertelen");
 			}
 		}
 	}
 	
-	class mentes_AL implements ActionListener{
-		public void actionPerformed(ActionEvent ae) {
-			if(ae.getActionCommand().contentEquals("clicked"))
-			{
-				mentes();
-			}
-		}
-	}
+	
 	public  Profil getFiok1() {
 		return fiok1;
 	}
 	public  Profil getFiok2() {
 		return fiok2;
 	}
-	public  void fillFiok(String soronLevo) {
-		if(fiok1.getOldal().equals(soronLevo))
-		{
-			fiok1.fill(vilagos, sotet, soronLevo);
-		}
-		else if(fiok2.getOldal().equals(soronLevo))
-		{
-			fiok2.fill(vilagos, sotet, soronLevo);
-	}
 	
-}
 	public  void botJatszma() {
 		if(fiok1.getNev().equals("Bot") && fiok2.getNev().equals("Bot"))
 		{
 			botMod = true;
 			fiok1.fill(vilagos, sotet, "vilagos");
 			fiok2.fill(vilagos, sotet, "vilagos");
-			botLepteto = new Timer(2500,new botAL());
+			botLepteto = new Timer(2000,new botAL());
 			botLepteto.start();
 		
 			
@@ -572,20 +538,20 @@ public class Tabla extends JFrame {
 				fiok1.activateBot();
 			}
 			else
+			{	
 				fiok2.activateBot();
-		
+			}
 	}
+	}
+	public boolean getBotMod() {
+		return botMod;
 	}
 	public void visszaallit() {
 		if(botMod)
 			botLepteto.stop();
-		if(fiok1.getHatra() != -1)
-		{
-			System.out.println("HD");
-			sakkOra.stop();
-		}
+		
 		Mezo.setBack();
-		vilagos.elementAt(0).setBackKoztuk();
+		Babu.setBackKoztuk();
 	}
 	public void vegeVan(String szin) {
 		boolean jatekVege = true;
@@ -605,7 +571,6 @@ public class Tabla extends JFrame {
 		}
 		if(jatekVege)
 		{
-			Vege= true;
 			String gyoztes = new String();
 			
 			if(Sakk.equals(""))
@@ -641,44 +606,7 @@ public class Tabla extends JFrame {
 			}
 		}
 	}
-	public class sakkOra_AL implements ActionListener {
-		public void actionPerformed(ActionEvent ae) {
-			System.out.println("HYEH");
-
-			Profil aktual = new Profil("");
-			if(fiok1.getOldal().equals(Mezo.getSoronLevo()))
-				aktual = fiok1;
-			else if(fiok2.getOldal().equals(Mezo.getSoronLevo()))
-				aktual = fiok2;
-			int ido = aktual.getHatra();
-			System.out.println(ido/60 + " : " + ido%60 + "MOST");
-			if(ido > 0)
-			{
-				String kiirando = String.format("%02d", ido/60) + " : " + String.format("%02d", ido % 60);
-				jatekos1Ido.setText(kiirando);
-				if(aktual == fiok1)
-					jatekos1Ido.setText(kiirando);
-				else if(aktual == fiok2)
-					jatekos2Ido.setText(kiirando);
-				aktual.setHatra(ido -1);
-
-				
-			}
-			if(aktual.getHatra() == 0)
-			{
-				visszaallit();
-				Object lehetosegek[] = {"OK"};
-				int valasz = JOptionPane.showOptionDialog(null, "A " + aktual.getOldal() + " ideje lejárt" , "Kifutottál az idõbõl",JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, lehetosegek, lehetosegek[0]);
-				if(valasz == 0)
-				{
-					sakkOra.stop();
-					Menu menu = new Menu();
-					menu.setVisible(true);
-					setVisible(false);
-				}
-			}
-		}
-	}
+	
 
 	}
 	

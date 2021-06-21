@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 public class Huszar extends Babu{
 	public Huszar(Mezo pos,String col) {
 		super(pos,col);
-		ertek = 3;
 		if(szin == "sotet")
 			icon = new ImageIcon("chess//png_24//games-battle-checkmate-chess-knight-horse-figure-1-3966.png");
 		else
