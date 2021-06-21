@@ -13,7 +13,7 @@ Az MNB felhívására készült weboldal, amit 2-en csináltunk 2 napos határid
 ![BCE12C11-0DD8-4A9C-A7BF-84682E04A272](https://user-images.githubusercontent.com/61737188/122705519-37325d00-d256-11eb-889c-c587b4f8bcb0.png)
 
 
-### 3.Amigos vereny (2021)
+### 3.Amigos verseny (2021)
 
 Az Amigos a gyerekekért felhívására készült weboldal, amit 3-an csináltunk. Az oldal Asp.net-ben készült. Az én feladatom a fájl feltöltés megoldása, és a dizájn finomhangolása volt.
 
