@@ -17,4 +17,4 @@ A program filmekről tart nyilván adatokat.A filmeket hozzá lehet adni konzolo
 
 Ebben a programban egy megadott keretprogramban valósítok meg sugárkövetést. Egy dodekaéder közepére egy parabolát, és egy pont fényforrást helyezek. A parabolát az arany fénytörő tulajdonságaival, míg a dodekaéder éleit diffúz anyag tulajdonságaival ruházom fel. A dodekaéder oldalait teljesen tükrözővé teszem, és elforgatom a tükrözött világot 72 fokkal. Létrehozok egy kamerát amin keresztül a felhasználó szemlélheti a virtuális világot, és ezt a dodekaéder belsejébe teszem. Azt, hogy a felhasználó ezen a kamerán keresztül pontosan mit lát, és azt milyennek látja sugárkövetéssel számítom ki.
 
-![image](https://user-images.githubusercontent.com/61737188/122702995-e835f900-d250-11eb-9d70-0b9f0b46e485.png)
+<img width="449" alt="grafika" src="https://user-images.githubusercontent.com/61737188/122703243-68f4f500-d251-11eb-994c-7042fe4568e3.png">
