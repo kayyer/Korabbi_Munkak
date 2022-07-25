@@ -1,0 +1,70 @@
+actor "Skeleton" as player
+participant "s : Settler" as s
+participant "rcp : TeleportRecipe" as rcp
+participant "telResReg: TeleportResourceRegistry" as resReg
+participant "t1 : Teleport" as t1
+participant "t2 : Teleport" as t2
+
+participant "inv : Inventory" as inv
+participant "iron1 : Iron" as iron
+participant "iron2 : Iron" as iron2
+participant "ice : Ice"
+participant "uranium : Uranium"
+
+player->s ++: craft(rcp)
+
+s->rcp ++:craft(s)
+    rcp->s ++:hasTeleport()
+    return false
+    
+    
+    rcp->resReg **: <<create>> TeleportResourceRegistry()
+    rcp->s ++: getInventory()
+    return inv
+    
+     rcp->resReg ++:register(inv)
+        resReg->iron ++:giveSignature(telResReg)
+            iron->resReg ++: register(iron1)
+            return
+        return
+        resReg->iron2 ++:giveSignature(telResReg)
+            iron->resReg ++: register(iron2)
+            return
+        return
+        resReg->ice ++:giveSignature(telResReg)
+            ice->resReg ++: register(ice)
+            return
+        return
+        resReg->uranium ++:giveSignature(telResReg)
+            uranium->resReg ++: register(uranium)
+            return
+        return
+    return
+    rcp->resReg ++:isSuccessful()
+    return true
+    
+    rcp->resReg ++: removeRequiredMaterials(inv)
+    resReg ->inv ++:removeMaterial(iron1)
+    return
+    resReg ->inv ++:removeMaterial(iron2)
+    return
+    resReg ->inv ++:removeMaterial(ice)
+    return
+    resReg->inv ++:removeMaterial(uranium)
+    return
+    return
+        rcp->t1 **:<<create>> Teleport(s)
+        activate t1
+            t1->s ++:acceptTeleport(t1)
+            return true
+            t1->t2 **:<<create>> Teleport(s, t1)
+        deactivate t1
+            activate t2
+                t2->s ++:acceptTeleport(t2)
+                return true
+            deactivate t2
+        
+    
+return true
+
+return true

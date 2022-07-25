@@ -1,0 +1,13 @@
+actor "Skeleton" as controller
+participant "r: Robot" as r
+participant "a: Asteroid" as a
+participant "dest: Teleport" as dest
+participant "t2: Teleport" as t2
+
+
+controller->r ++: move(dest)
+        r->dest ++: acceptWorker(r)
+            dest->t2 ++: isPlaced()
+            return false
+        return false
+return

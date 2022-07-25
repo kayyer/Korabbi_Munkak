@@ -1,0 +1,7 @@
+asteroidfield create
+asteroidfield af1 bind
+asteroid create 5 none 5 5
+asteroid create 6 iron 6 4
+asteroid a1 setNeighbor a2
+ufo create a1
+ufo u1 step

@@ -1,0 +1,29 @@
+actor "Skeleton" as controller
+participant "a: Asteroid" as a
+participant "t: Teleport" as t
+participant "t2: Teleport" as t2
+participant "s: Settler" as s
+
+participant ": Game" as game
+
+controller -> a++: explode()
+    a-> t++: removeNeighbor(a)
+        t->t ++:destroy()
+            t->a ++:removeNeighbor(t)
+            return
+            
+            t->t2 ++:isPlaced()
+            return false
+            t->t2 ++:getHolder()
+            return s
+            
+            t->s ++:removeTeleport(t2)
+            return
+        return
+    return
+    destroy t
+    destroy t2
+    
+    a->game ++:removeSteppable(a)
+    return
+return

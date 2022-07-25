@@ -1,0 +1,32 @@
+actor "Skeleton" as player
+participant "s: Settler" as s
+participant "a: Asteroid" as a
+participant "core: Uranium" as core
+participant ": Game" as game
+
+player->s ++: drill()
+    s->a ++ :drilled()
+            opt isExposed
+                a->core ++: exposed(a)
+                    core->a ++: explode()
+                        a->s ++: explode()
+                            s->s ++:die()
+                                s->a ++: removeWorker(s)
+                                return
+                            
+                                s->game ++:removeSettler(s)
+                                    game->game ++:removeSteppable(s)
+                                    return
+                                    game->game ++:endGame(false)
+                                    return
+                                return
+                            return
+                        return
+                        
+                        a->game ++: removeSteppable(a)
+                        return
+                    return
+                return
+            end
+        return
+return

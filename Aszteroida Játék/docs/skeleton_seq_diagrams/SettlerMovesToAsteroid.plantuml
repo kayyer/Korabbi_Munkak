@@ -1,0 +1,22 @@
+actor "Skeleton" as player
+participant "s: Settler" as s
+participant "a: Asteroid" as a
+participant "dest: Asteroid" as dest
+participant ": Game" as game
+
+
+player->s ++: move(dest)
+        s->dest ++:acceptWorker(s)
+            dest->s ++: setAsteroid(dest)
+            return
+            
+            dest->dest ++: checkBaseWin()
+            return false
+            
+		return true
+        
+        s->a ++:removeWorker(s)
+		return
+        
+return
+

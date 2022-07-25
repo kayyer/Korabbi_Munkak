@@ -1,0 +1,16 @@
+participant "a: Asteroid" as a
+participant "w: Worker" as w
+participant ": Game" as game
+
+[->a ++:acceptWorker(w)
+    a->w ++: setAsteroid(a) 
+    return
+    a->a ++:checkBaseWin()
+    return b
+    
+    opt b == true
+        a->game ++:endGame(true)
+        return
+    end
+    
+return true

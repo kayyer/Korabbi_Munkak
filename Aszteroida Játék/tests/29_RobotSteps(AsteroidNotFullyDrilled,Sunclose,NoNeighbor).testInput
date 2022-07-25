@@ -1,0 +1,7 @@
+asteroidfield create
+asteroidfield af1 bind
+asteroid create 5 none 0 5
+asteroid a1 setSunDistance 3
+asteroid a1 setSunclose true
+robot create a1
+robot r1 step

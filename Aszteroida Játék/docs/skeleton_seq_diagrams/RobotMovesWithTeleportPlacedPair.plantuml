@@ -1,0 +1,27 @@
+actor "Skeleton" as controller
+participant "r: Robot" as r
+participant "a: Asteroid" as a
+participant "dest: Teleport" as dest
+participant "t2: Teleport" as t2
+participant "a2: Asteroid" as a2
+
+
+controller->r ++: move(dest)
+        r->dest ++: acceptWorker(r)
+            dest->t2 ++: isPlaced()
+            return true
+            dest->t2 ++:getAsteroid()
+            return a2
+                
+            dest->a2 ++:acceptWorker(r)
+                a2->r ++:setAsteroid(a2)
+                return
+                a2->a2 ++: checkBaseWin()
+                return false
+            return true
+        return true
+        
+            r->a ++: removeWorker(r)
+            return
+return
+
