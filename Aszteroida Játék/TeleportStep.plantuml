@@ -1,0 +1,15 @@
+participant ":Game" as g
+participant "t: Teleport" as t
+participant "a1: Asteroid" as a1
+participant "a2: Asteroid" as a2
+
+g->t ++: step()
+opt crazy
+		t->a1 ++:getNeighbors()
+		return neighbors
+		t->a1 ++: removeNeighbor(t)
+		return
+		t->a2 ++: addNeighbor(t)
+		return true
+end
+return

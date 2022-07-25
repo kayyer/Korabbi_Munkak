@@ -1,0 +1,19 @@
+[*] --> NotPlaced
+NotPlaced : Egyik teleport kapu sincs lehelyezve
+
+NotPlaced --> PairPlaced: pár lerakása
+PairPlaced: A teleportkapu párja le
+PairPlaced: van helyezve
+
+NotPlaced --> Placed:teleportkapu lerakása
+Placed: A teleportkapu le van
+Placed: helyezve
+
+Placed --> BothPlaced: pár lerakása
+PairPlaced-->BothPlaced: teleportkapu lerakása
+BothPlaced: A teleport kapu és a
+BothPlaced: párja is le van helyezve.
+
+BothPlaced --> [*]: egyik teleportkapu elpusztítása
+PairPlaced --> [*]: teleportkapu párja elpusztítva
+Placed --> [*]: teleportkapu elpusztítva

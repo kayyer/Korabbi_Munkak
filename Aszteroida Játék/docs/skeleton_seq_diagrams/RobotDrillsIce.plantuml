@@ -1,0 +1,15 @@
+actor "Skeleton" as player
+participant "r: Robot" as s
+participant "a: Asteroid" as a
+participant "core: Ice" as core
+
+player->s ++: drill()
+    s->a ++ :drilled()
+            opt isExposed
+                a-> core++: exposed(a)
+                    core-> a++: removeMaterial()
+                    return
+                return
+            end
+        return
+return

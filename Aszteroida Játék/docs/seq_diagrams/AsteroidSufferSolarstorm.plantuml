@@ -1,0 +1,21 @@
+participant "a: Asteroid" as a
+participant "aReg: AsteroidRegistry" as ar
+participant "t: Transporter" as t
+participant "w: Worker" as w
+
+[->a ++: sufferSolarStorm(depth,aReg0)
+a->ar ++: contains(a)
+return contains
+opt depth <= 5 && !contains
+		a->ar ++: register(a)
+		return
+		loop for w in workers
+		a->w ++:die()
+		return
+		end
+		loop for t in neightbors
+		a->t ++:sufferSolarStorm(depth+1,aReg)
+		return
+		end
+end
+return

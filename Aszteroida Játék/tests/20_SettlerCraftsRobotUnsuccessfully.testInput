@@ -1,0 +1,7 @@
+asteroidfield create
+asteroidfield af1 bind
+asteroid create 5
+settler create a1
+settler s1 inventory add iron
+settler s1 inventory add uranium0
+settler s1 craft robot

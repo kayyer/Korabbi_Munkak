@@ -1,0 +1,4 @@
+participant "inv: UFOInventory" as inv
+
+[->inv ++:isFull()
+return false

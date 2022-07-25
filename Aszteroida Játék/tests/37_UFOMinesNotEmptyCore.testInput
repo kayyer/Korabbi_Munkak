@@ -1,0 +1,5 @@
+asteroidfield create 
+asteroidfield af1 bind 
+asteroid create 5 iron 5 5 
+ufo create a1
+ufo u1 mine 

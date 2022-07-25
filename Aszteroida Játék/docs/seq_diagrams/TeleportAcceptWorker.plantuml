@@ -1,0 +1,17 @@
+participant "t: Teleport" as t
+participant "pair: Teleport" as pair
+participant "w: Worker" as w
+participant "a: Asteroid" as a
+
+[->t ++:acceptWorker(w)
+t->pair ++: isPlaced()
+return placed
+alt placed == true
+		t->pair ++: getAsteroid()
+		return a
+		t->a ++:acceptWorker(w)
+		return true
+		[<--t : true
+else else
+	    return false
+end

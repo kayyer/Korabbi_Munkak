@@ -1,0 +1,104 @@
+    participant "ic : InputController" as igp
+    participant "actionEvent : ActionEvent" as actionEvent
+
+    participant " :Game" as game
+    participant " :CommandDatabase" as cmdDatBase 
+    participant "mainFrame : MainFrame" as mainFrame
+    participant "currentSettler : Settler" as currentSettler
+    
+    participant "sip : SettlerInfoPanel" as sip
+    participant "afp : AsteroidFieldPanel" as afp
+    
+    [->igp ++: actionPerformed(actionEvent)
+    
+    igp->actionEvent ++: getActionCommand()
+    return command
+    
+    
+    alt command starts with "quit" or "startGame" or "enterMenu"
+    
+    
+    alt command starts with "startGame"
+        igp->mainFrame ++: switchPanel(inGamePanel)
+        return
+    else command starts with "enterMenu"
+        igp->mainFrame ++: switchPanel(mainMenuPanel)
+        return
+    else command starts with "quit"
+        igp->igp ++:quit()
+        return
+    end
+    
+    else else
+    
+    
+    alt command starts with "mine_"
+        igp->currentSettler ++: mine()
+        return miningSuccess
+    else command starts with "drill_"
+        igp->currentSettler ++: drill()
+        return
+    else command starts with "placeItem_"
+        igp->cmdDatBase ++:getMaterial(command[10:]
+        return m
+        igp->currentSettler ++: placeMaterial(m)
+        return success
+    else command starts with "placeTeleport_"
+        igp->cmdDatBase ++:getTeleport(command[14:])
+        return t
+        igp->currentSettler ++: placeTeleport(t)
+        return success
+    else command starts with "move_"
+        igp->cmdDatBase ++:getTransporter(command[5:])
+        return tr
+        igp->currentSettler ++: move(tr)
+        return success
+    
+    end
+    
+
+    
+    igp->game ++:round()
+    return settlerToStep
+    
+    loop while Game hasEvent()
+        igp->game ++:getEvent()
+        return event
+        
+        alt event type is settler died
+            igp-> cmdDatBase ++: getSettlerID(subject)
+            return settlerID
+            igp->mainFrame ++: displayMessage("Settler " + settlerID +" Has Died!")
+            return
+        else  event type is game won
+            igp->igp ++: displayMessage("Base Built, Game Won! Returning To Main Menu.")
+            return
+        else event type is game lost
+            igp->mainFrame ++: displayMessage("Game Lost! Returning To Main Menu.")
+            return
+        else event type is asteroid exploded
+            igp-> cmdDatBase ++: getAsteroidID(subject)
+            return asteroidID
+            igp->mainFrame ++: displayMessage("Asteroid " + asteroidID +" Has Exploded!")
+            return
+        else event type is sunstorm
+            igp->mainFrame ++: displayMessage("A Sun Storm Has Hit The Asteroid Field!")
+            return
+        end
+    end
+    
+    alt Game is still running and settlerToStep not null
+        igp->afp ++: update(settlerToStep)
+        return
+        igp->sip ++: update(settlerToStep)
+        return
+    else else
+        igp->mainFrame ++: switchPanel(mainMenuPanel)
+        return
+    end
+    
+    
+        
+    end
+    
+    return

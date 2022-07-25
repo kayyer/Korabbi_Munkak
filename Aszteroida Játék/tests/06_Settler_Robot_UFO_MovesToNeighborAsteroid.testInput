@@ -1,0 +1,8 @@
+asteroidfield create
+asteroidfield af1 bind
+asteroid create 4
+asteroid create 5
+asteroid a1 setNeighbors a2
+settler create a1
+settler s1 move a2
+asteroid a2 accept s1

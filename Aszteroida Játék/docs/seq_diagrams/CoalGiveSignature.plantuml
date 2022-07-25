@@ -1,0 +1,8 @@
+participant "c: Coal" as i
+participant "resReg: ResourceRegistry" as r
+
+
+[->i ++: giveSignature(resReg)
+i->r ++:register(c)
+return
+return

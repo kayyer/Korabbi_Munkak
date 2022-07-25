@@ -1,0 +1,14 @@
+participant "w: Worker" as w
+participant "a: Asteroid" as a
+participant "core: Material" as core
+
+[->w ++: drill()
+    w->a ++ :drilled()
+        a->a ++: isExposed() 
+        return isExposed
+            opt isExposed && core not null 
+                a->core ++: expose()
+            return
+        end
+    return
+return

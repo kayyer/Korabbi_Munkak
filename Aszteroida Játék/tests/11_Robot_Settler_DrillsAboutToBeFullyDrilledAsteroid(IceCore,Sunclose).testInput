@@ -1,0 +1,7 @@
+asteroidfield create
+asteroidfield af1 bind
+asteroid create 1 ice 0 5
+asteroid a1 setSunDistance 5
+asteroid a1 setSunclose true
+settler create a1
+settler s1 drill

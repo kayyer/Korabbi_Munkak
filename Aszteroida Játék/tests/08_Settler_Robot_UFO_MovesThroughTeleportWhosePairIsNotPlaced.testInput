@@ -1,0 +1,7 @@
+asteroidfield create
+asteroidfield af1 bind
+asteroid create 5
+settler create a1
+teleport create s1
+settler s1 placeTeleport
+settler s1 move g1

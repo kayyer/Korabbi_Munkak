@@ -1,0 +1,29 @@
+actor "Skeleton" as controller
+participant "r: Robot" as r
+participant "a: Asteroid" as a
+participant "core: Uranium" as core
+participant ": Game" as game
+
+controller->r ++: drill()
+    r->a ++ :drilled()
+            opt isExposed
+                a->core ++: exposed(a)
+                    core->a ++: explode()
+                        a->r ++: explode()
+                            r->a ++: getNeighbors()
+                            return empty
+                            r->r ++: die()
+                                r->a ++:removeWorker(r)
+                                return
+                                r->game ++:removeSteppable(r)
+                                return
+                            return
+                        return
+                        
+                        a->game ++: removeSteppable(a)
+                        return
+                    return
+                return
+            end
+        return
+return

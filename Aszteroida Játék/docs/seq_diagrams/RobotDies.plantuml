@@ -1,0 +1,10 @@
+participant "a: Asteroid" as a
+participant "r: Robot" as r
+participant ": Game" as game
+
+a->r ++: die()
+    r->a ++: removeWorker(r)
+    return
+    r->game ++: removeSteppable(r)
+    return
+return

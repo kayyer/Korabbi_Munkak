@@ -1,0 +1,6 @@
+asteroidfield create
+asteroidfield af1 bind
+asteroid create 1 none 0 1
+asteroid a1 setSunclose false
+settler create a1
+settler s1 drill

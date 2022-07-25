@@ -1,0 +1,107 @@
+actor "Skeleton" as player
+participant "s1: Settler" as s1
+participant "s2: Settler" as s2
+participant "a1: Asteroid" as a
+participant "a2: Asteroid" as a2
+
+participant "baseResReg: BaseResourceRegistry" as resReg
+
+
+participant "i: Inventory" as i
+
+participant "ur1: Uranium" as ur1
+participant "ur2: Uranium" as ur2
+participant "ur3: Uranium" as ur3
+
+participant "ic1: Ice" as ic1
+participant "ic2: Ice" as ic2
+participant "ic3: Ice" as ic3
+
+participant "ir1: Iron" as ir1
+participant "ir2: Iron" as ir2
+participant "ir3: Iron" as ir3
+
+participant "c1: Coal" as co1
+participant "c2: Coal" as co2
+participant "c3: Coal" as co3
+participant ": Game" as g
+
+player->s2 ++: move(a1)
+        s2->a ++:acceptWorker(s2)
+            a->s2 ++: setAsteroid(a1)
+            return
+            
+            a->a ++: checkBaseWin()
+    a-> resReg **: <<create> BaseResourceRegistry()
+    
+    a->s1 ++: getInventory()
+    return inv1
+    
+    a-> resReg ++:register(inv1)
+        resReg->ur1 ++:giveSignature(baseResReg)
+            ur1-> resReg++: register(ur1)
+            return
+        return
+        resReg->ur2 ++:giveSignature(baseResReg)
+            ur2-> resReg++: register(ur2)
+            return
+        return
+        resReg->ur3 ++:giveSignature(baseResReg)
+            ur3-> resReg++: register(ur3)
+            return
+        return
+        
+        resReg->ic1 ++:giveSignature(baseResReg)
+            ic1-> resReg++: register(ic1)
+            return
+        return
+        resReg->ic2 ++:giveSignature(baseResReg)
+            ic2-> resReg++: register(ic2)
+            return
+        return
+        resReg->ic3 ++:giveSignature(baseResReg)
+            ic3-> resReg++: register(ic3)
+            return
+        return
+        resReg->ir1 ++:giveSignature(baseResReg)
+            ir1-> resReg++: register(ir1)
+            return
+        return
+        resReg->ir2 ++:giveSignature(baseResReg)
+            ir2-> resReg++: register(ir2)
+            return
+        return
+        resReg->ir3 ++:giveSignature(baseResReg)
+            ir3-> resReg++: register(ir3)
+            return
+        return
+
+    return
+    
+    a->s2 ++: getInventory()
+    return inv2
+    
+    a-> resReg ++:register(inv2)
+        resReg->co1 ++:giveSignature(baseResReg)
+            co1-> resReg++: register(c1)
+            return
+        return
+        resReg->co2 ++:giveSignature(baseResReg)
+            co2-> resReg++: register(c2)
+            return
+        return
+        resReg->co3 ++:giveSignature(baseResReg)
+            co3-> resReg++: register(c3)
+            return
+        return
+    return
+    
+    a->resReg ++:isSuccessful()
+    return true
+return true
+a->g ++:endGame(true)
+return
+return true
+s2->a2 ++: removeWorker(s2)
+return
+return

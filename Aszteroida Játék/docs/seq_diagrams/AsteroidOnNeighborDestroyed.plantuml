@@ -1,0 +1,7 @@
+participant "a: Asteroid" as a
+participant "t: Transporter" as t
+
+[->a ++: onNeighborDestroyed(t)
+a->a ++: removeNeighbor(t)
+return
+return

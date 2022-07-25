@@ -1,0 +1,52 @@
+participant "s : Settler" as s
+participant "rcp : RobotRecipe" as rcp
+participant "inv : Inventory" as inv
+participant "m : Material" as m
+participant "a : Asteroid" as a
+participant "robotResReg: RobotResourceRegistry" as resReg
+participant "r : Robot" as r
+participant ": Game" as game
+
+[->s ++: craft(rcp)
+
+s->rcp ++:craft(s)
+    rcp->resReg **: <<create>> RobotResourceRegistry()
+
+    rcp->s ++: getInventory()
+    return inv
+    
+    rcp->resReg ++: register(i)
+    return
+    
+    rcp->resReg ++: isSuccesful()
+    return haveEnoughMaterials
+    
+    
+    alt haveEnoughMaterials == true
+        
+        
+        rcp->resReg ++: removeRequiredMaterials(inv)
+            loop for used Material m
+                resReg-> inv++: removeMaterial(m)
+                return
+            end
+        return
+    
+    
+        rcp->s ++: getAsteroid()
+        return a
+        
+        rcp->r **:<<create>> Robot(a)
+        activate r
+            r->a ++: AcceptWorker(a)
+            return
+            r->game ++: addSteppable(r)
+            return
+        deactivate r
+        
+        rcp-->s: true
+        s-->[: true
+    else else
+        rcp-->s --: false
+        s-->[ --: false
+    end
