@@ -1,5 +1,0 @@
-asteroidfield create
-asteroidfield af1 bind
-asteroid create 8
-settler create a1
-settler s1 drill

@@ -1,8 +1,0 @@
-participant "te: Teleport" as te
-participant "tr: Transporter" as tr
-
-[->te ++: removeNeighbor(tr)
-te->te ++: destroy()
-return
-return
-destroy te

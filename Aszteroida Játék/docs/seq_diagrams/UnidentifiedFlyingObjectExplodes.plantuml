@@ -1,6 +1,0 @@
-participant "ufo: UnidentifiedFlyingObject" as ufo
-
-[-> ufo ++: explode()
-    ufo->ufo ++:die()
-    return
-return

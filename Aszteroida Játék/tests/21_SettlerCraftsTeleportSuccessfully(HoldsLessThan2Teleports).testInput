@@ -1,9 +1,0 @@
-asteroidfield create
-asteroidfield af1 bind
-asteroid create 1
-settler create a1
-settler s1 inventory add iron
-settler s1 inventory add iron
-settler s1 inventory add ice
-settler s1 inventory add uranium0
-settler craft teleport 

@@ -1,7 +1,0 @@
-actor "Skeleton" as player
-participant "s: Settler" as s
-
-player->s ++:placeTeleport()
-return false
-    
-    

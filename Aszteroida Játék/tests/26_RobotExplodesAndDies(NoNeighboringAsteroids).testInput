@@ -1,5 +1,0 @@
-asteroidfield create
-asteroidfield af1 bind
-asteroid create 1
-robot create a1
-robot r1 explode

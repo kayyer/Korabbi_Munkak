@@ -1,5 +1,0 @@
-asteroidfield create
-asteroidfield af1 bind
-asteroid create 4 iron 2 9
-settler create a1
-settler s1 craft teleport

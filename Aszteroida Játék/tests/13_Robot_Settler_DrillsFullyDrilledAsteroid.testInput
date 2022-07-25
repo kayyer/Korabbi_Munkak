@@ -1,6 +1,0 @@
-asteroidfield create
-asteroidfield af1 bind
-asteroid create 0 none 0 2
-asteroid a1 setSunclose false
-settler create a1
-settler s1 drill

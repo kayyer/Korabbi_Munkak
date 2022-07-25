@@ -1,7 +1,0 @@
-asteroidfield create
-asteroidfield af1 bind
-asteroid create 5 none 5 5
-asteroid create 6 iron 0 4
-asteroid a1 setNeighbor a2
-robot create a1
-robot r1 step

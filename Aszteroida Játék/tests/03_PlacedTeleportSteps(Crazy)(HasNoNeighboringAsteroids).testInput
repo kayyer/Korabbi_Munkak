@@ -1,8 +1,0 @@
-asteroidfield create
-asteroidfield af1 bind
-asteroid create 4
-settler create a1
-teleport create a1 s1
-settler s1 placeTeleport
-teleport g1 crazy
-teleport g1 step

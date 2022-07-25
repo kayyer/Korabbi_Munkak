@@ -1,7 +1,0 @@
-asteroidfield create
-asteroidfield af1 bind
-asteroid create 1 uranium2 0 5
-asteroid a1 setSunDistance 2
-asteroid a1 setSunclose true
-settler create a1
-settler s1 drill

@@ -1,6 +1,0 @@
-participant "s: Settler" as s
-
-[->s++:explode()
-    s->s ++: die()
-    return
-return

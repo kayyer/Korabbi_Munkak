@@ -1,4 +1,0 @@
-participant "inv: BlankInventory" as inv
-
-[->inv ++:isFull()
-return true

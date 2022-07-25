@@ -1,7 +1,0 @@
-participant "a: Asteroid" as a
-participant "t: Teleport" as t
-participant "aReg: AsteroidRegistry" as aReg
-
-a->t ++: sufferSolarstorm(depth,aReg)
-
-return

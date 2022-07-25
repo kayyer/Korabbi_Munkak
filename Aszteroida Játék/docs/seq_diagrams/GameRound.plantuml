@@ -1,9 +1,0 @@
-participant ": Game" as g
-participant "s: Steppable" as s
-
-[->g ++:round()
-loop for s in steppables
-		g->s ++: step()
-		return
-end
-[<--g --

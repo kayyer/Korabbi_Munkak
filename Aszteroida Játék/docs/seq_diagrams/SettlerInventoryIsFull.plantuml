@@ -1,8 +1,0 @@
-participant "inv: SettlerInventory" as inv
-
-[->inv ++:isFull()
-alt number of items stored < 10
-    [<--inv : false
-else else
-    return true
-end

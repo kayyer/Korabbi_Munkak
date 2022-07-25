@@ -1,5 +1,0 @@
-asteroidfield create
-asteroidfield af1 bind
-asteroid create 5 none 0 5
-settler create a1
-settler s1 die
