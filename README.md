@@ -1,6 +1,6 @@
 # Eddigi Android projektjeim:
 
-### 1.Esemény szervező alkalmazás (2022)
+### 1.Eseményszervező alkalmazás (2022)
 
 Kotlin nyelvben írt alkalmazás, mely segítségével a felhasználók eseményeket szervezhetnek, amelyekre a többi felhasználó feliratkozhat. A felhasználók kommunikációját chat funkció segíti. Az alkalmazás MVP architektúrára épül. A backend Firebase BaaS szolgáltatás segítségével van megoldva. Az alkalmazáshoz Unit tesztek is készültek.
 
